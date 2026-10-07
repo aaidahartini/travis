@@ -1,0 +1,30 @@
+{
+  "roles": {
+    "role_admin": { "role_name": "administrator" },
+    "role_authority": { "role_name": "town_planner_authority" }
+  },
+  "route_segments": {
+    "segment_1": {
+      "name": "Junction in front of Canselori leading to FCSIT",
+      "description": "High vehicle activity during semesters, campus area"
+    },
+    "segment_2": {
+      "name": "UNIMAS Entrance Area",
+      "description": "Controlled single-lane entry/exit point"
+    }
+  },
+  "sensors": {
+    "sensor_1": {
+      "segment_id": "segment_1",
+      "mac_address": "",
+      "status": "offline",
+      "max_capacity": 0
+    },
+    "sensor_2": {
+      "segment_id": "segment_2",
+      "mac_address": "",
+      "status": "offline",
+      "max_capacity": 0
+    }
+  }
+}
