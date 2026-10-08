@@ -41,12 +41,15 @@
 import Header from "./components/common/Header";
 import SummaryCard from "./components/common/SummaryCard";
 import DailyPatternChart from "./components/common/DailyPatternCharts";
+import StatusSummary from "./components/common/StatusSummary";
+import LocationCard from "./components/common/LocationCard";
 
 function App() {
   return (
     <div>
+      {/*Header*/}
       <Header/>
-
+      {/*Summary Card*/}
       <div className="grid grid-cols-4 gap-4 p-4">
         <SummaryCard title="Peak Hour" value="5 PM" />
         <SummaryCard title="Max Congestion" value="70 %" />
@@ -54,10 +57,24 @@ function App() {
         <SummaryCard title="Critical Area" value="2" />
       </div>
 
-      <div className="p-4">
-        <DailyPatternChart/>
+      {/*Daily Pattern and Status Summary */}
+      <div className="grid grid-cols-3 gap-4 p-4">
+        <div className="col-span-2">
+          <DailyPatternChart/>
+        </div>
+         <StatusSummary/>
       </div>
+      
+      {/*Location Card*/}
+      <div className="grid grid-cols-2 gap-4 p-4">
+        <LocationCard name="Canselori Junction" congestion={40} vehicleCount={12}/>
+        <LocationCard name="UNIMAS Entrance" congestion={50} vehicleCount={15}/>
+      </div>
+
     </div>
+
+    
+
   );
 }
 

@@ -14,6 +14,10 @@ const hourlyData = [
     {hour: "9 AM", congestion: 50},
     {hour: "10 AM", congestion: 25},
     {hour: "11 AM", congestion: 20},
+    {hour: "12 PM", congestion: 90},
+    {hour: "1 PM", congestion: 70},
+    {hour: "2 PM", congestion: 80},
+    {hour: "3 PM", congestion: 40},
 ];
 
 function getColor(value){
