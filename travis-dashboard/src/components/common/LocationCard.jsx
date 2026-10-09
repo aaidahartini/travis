@@ -11,7 +11,7 @@ function getStatus(value){
 
 function getColor(value){
     if (value <=39){
-        return "#008000";
+        return "#228B22";
     }
 
     if (value <= 74){
@@ -30,9 +30,9 @@ function LocationCard({name, congestion, vehicleCount}){
     const offset = circumference *(1 - congestion/ 100);
 
     return(
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-colors duration-300 dark:border-slate-700 dark:bg-slate-800">
             {/*Location Name*/}
-            <h2 className="text-lg font-semibold text-center mb-4">
+            <h2 className="text-sm text-slate-500 dark:text-slate-400">
                 {name}
             </h2>
 
@@ -47,7 +47,7 @@ function LocationCard({name, congestion, vehicleCount}){
 
                 {/*Percentage in the middle*/}
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-2xl font-bold">
+                    <span className="text-2xl font-bold text-slate-900 dark:text-white">
                         {congestion}%
                     </span>
                 </div>
@@ -55,12 +55,12 @@ function LocationCard({name, congestion, vehicleCount}){
             {/*Vehicle Count */}
             <p className="text-center mt-4 text-gray-600">
                 Vehicles:{""}
-                <span className="font-semibold text-gray-900">
+                <span className="text-2xl font-bold text-slate-900 dark:text-white">
                     {vehicleCount}
                 </span>
             </p>
             {/*Status*/}
-            <p className="text-center font-semibold mt-2" style={{color: color}}>
+            <p className="text-sm text-slate-500 dark:text-slate-400" style={{color: color}}>
                 {status}
             </p>
         </div>

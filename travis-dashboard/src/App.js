@@ -1,43 +1,4 @@
-// // Import React
-// import React, { useEffect } from "react";
-
-// // Import our Firebase database connection
-// import { db } from "./firebase";
-
-// // Import Firebase database functions
-// import { ref, set } from "firebase/database";
-
-// function App() {
-
-//   useEffect(() => {
-//     // This runs once when the app loads
-//     // We write a test value to Firebase database
-//     console.log("Database URL:", process.env.REACT_APP_FIREBASE_DATABASE_URL);
-//     set(ref(db, "test/connection"), {
-//       status: "connected",
-//       message: "TRAVIS Firebase connection successful!"
-//     })
-//     .then(() => {
-//       // If successful, show this in browser console
-//       console.log("Firebase connected successfully!");
-//     })
-//     .catch((error) => {
-//       // If failed, show the error
-//       console.log("Firebase connection failed:", error);
-//     });
-//   }, []);
-
-//   return (
-//     <div>
-//       <h1>TRAVIS - Firebase Connection Test</h1>
-//       <p>Check your browser console and Firebase database for results.</p>
-//       <h1 className="text-3xl font-bold text-blue-500">TRAVIS - Firebase Connection Test</h1>
-//     </div>
-//   );
-// }
-
-// export default App;
-
+import { useEffect, useState} from "react";
 import Header from "./components/common/Header";
 import SummaryCard from "./components/common/SummaryCard";
 import DailyPatternChart from "./components/common/DailyPatternCharts";
@@ -45,12 +6,35 @@ import StatusSummary from "./components/common/StatusSummary";
 import LocationCard from "./components/common/LocationCard";
 
 function App() {
+  const [isDark, setIsDark] = useState(()=> {
+    const savedTheme = localStorage.getItem("travis-theme");
+
+    if (savedTheme !== null){
+      return savedTheme === "dark";
+    }
+
+    return false; //Light mode by default
+
+  });
+
+  useEffect(() => {
+    localStorage.setItem("travis-theme", isDark ? "dark" : "light");
+  }, [isDark]);
+
+  function toggleTheme() {
+    setIsDark((current) => !current);
+  }
+
   return (
-    <div>
-      {/*Header*/}
-      <Header/>
+    <div className={isDark ? "dark" : ""}>
+      <div className="min-h-screen bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+         {/*Header*/}
+      <Header
+        isDark={isDark}
+        onToggleTheme={toggleTheme}
+      />
       {/*Summary Card*/}
-      <div className="grid grid-cols-4 gap-4 p-4">
+      <div className="grid grid-cols-4 gap-4 p-4 sm:grid-cols-2 xl:grid-cols-4">
         <SummaryCard title="Peak Hour" value="5 PM" />
         <SummaryCard title="Max Congestion" value="70 %" />
         <SummaryCard title="Average Congestion" value="45 %" />
@@ -58,7 +42,7 @@ function App() {
       </div>
 
       {/*Daily Pattern and Status Summary */}
-      <div className="grid grid-cols-3 gap-4 p-4">
+      <div className="grid grid-cols-3 gap-4 p-2">
         <div className="col-span-2">
           <DailyPatternChart/>
         </div>
@@ -66,12 +50,14 @@ function App() {
       </div>
       
       {/*Location Card*/}
-      <div className="grid grid-cols-2 gap-4 p-4">
+      <div className="grid grid-cols-2 gap-4 p-3">
         <LocationCard name="Canselori Junction" congestion={40} vehicleCount={12}/>
         <LocationCard name="UNIMAS Entrance" congestion={50} vehicleCount={15}/>
       </div>
 
     </div>
+      </div>
+     
 
     
 
