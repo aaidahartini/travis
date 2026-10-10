@@ -42,7 +42,7 @@ function LocationCard({name, congestion, vehicleCount}){
                     {/*Background Ring*/}
                     <circle cx="50" cy="50" r={radius} fill="none" stroke="#e5e7eb" strokeWidth="10"/>
                     {/*Progress Ring*/}
-                    <circle cx="50" cy="50" r={radius} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={offset} transform="rotate(-90 -50 50)"/>
+                    <circle cx="50" cy="50" r={radius} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={offset} transform="rotate(-90 50 50)"/>
                 </svg>
 
                 {/*Percentage in the middle*/}
@@ -53,14 +53,14 @@ function LocationCard({name, congestion, vehicleCount}){
                 </div>
             </div>
             {/*Vehicle Count */}
-            <p className="text-center mt-4 text-gray-600">
-                Vehicles:{""}
+            <p className="text-center font-bold mt-4 text-gray-500">
+                Vehicles:{" "}
                 <span className="text-2xl font-bold text-slate-900 dark:text-white">
                     {vehicleCount}
                 </span>
             </p>
             {/*Status*/}
-            <p className="text-sm text-slate-500 dark:text-slate-400" style={{color: color}}>
+            <p className="text-center font-semiboldtext-sm text-slate-500 dark:text-slate-400" style={{color: color}}>
                 {status}
             </p>
         </div>

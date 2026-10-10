@@ -57,10 +57,11 @@ function DailyPatternChart(){
             <div className="w-full h-80">
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={hourlyData}>
-                        <XAxis dataKey="hour"/>
+                        <XAxis dataKey="hour" tick={{ fill: "currentColor" }}/>
                         <YAxis
                             domain={[0, 100]}
                             tickFormatter={(value) => `${value}%`}
+                            tick={{ fill: "currentColor" }}
                         />
 
                         <Bar dataKey="congestion">

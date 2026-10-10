@@ -30,7 +30,7 @@ function Header({ isDark, onToggleTheme}){
                     onClick={onToggleTheme} 
                     aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
                     title={`Switch to ${isDark ? "light" : "dark"} mode`}
-                    className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-slate-600 dark:text-slate-200 dark:hover:bg-slate-800">
+                    className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">
                     {isDark ? "☀️" : "🌙" }
                 </button>
             </div>

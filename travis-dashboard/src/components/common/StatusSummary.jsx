@@ -1,6 +1,6 @@
 const locations = [
-    {name: "Canselori Junction", congestion: 40},
-    {name: "UNIMAS Entrance", congestion: 50},
+    {name: "Canselori Junction", congestion: 30},
+    {name: "UNIMAS Entrance", congestion: 85},
 ];
 
 function getStatus(value){
@@ -37,7 +37,7 @@ function StatusSummary(){
             {/* Free Flow */ }
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">
+                    <span className="text-sm text-slate-500 dark:text-slate-400 h-3 w-3 rounded-full bg-green-500">
 
                     </span>
                     <span>Free Flow</span>
@@ -50,7 +50,7 @@ function StatusSummary(){
             {/*Moderate*/}
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <span className="text-sm text-slate-500 dark:text-slate-400"></span>
+                    <span className="text-sm text-slate-500 dark:text-slate-400 h-3 w-3 rounded-full bg-yellow-500"></span>
                     <span>Moderate</span>
                 </div>
                 <span className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -61,7 +61,7 @@ function StatusSummary(){
             {/*Heavy*/}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <span className="text-sm text-slate-500 dark:text-slate-400"></span>
+                    <span className="text-sm text-slate-500 dark:text-slate-400 h-3 w-3 rounded-full bg-red-500"></span>
                     <span>Heavy</span>
                 </div>
                 <span className="text-2xl font-bold text-slate-900 dark:text-white">

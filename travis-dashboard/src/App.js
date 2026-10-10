@@ -26,7 +26,7 @@ function App() {
   }
 
   return (
-    <div className={isDark ? "dark" : ""}>
+    <div className={isDark ? "dark" : "" }>
       <div className="min-h-screen bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
          {/*Header*/}
       <Header
@@ -34,7 +34,7 @@ function App() {
         onToggleTheme={toggleTheme}
       />
       {/*Summary Card*/}
-      <div className="grid grid-cols-4 gap-4 p-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 p-3 sm:grid-cols-2 xl:grid-cols-4">
         <SummaryCard title="Peak Hour" value="5 PM" />
         <SummaryCard title="Max Congestion" value="70 %" />
         <SummaryCard title="Average Congestion" value="45 %" />
@@ -42,25 +42,22 @@ function App() {
       </div>
 
       {/*Daily Pattern and Status Summary */}
-      <div className="grid grid-cols-3 gap-4 p-2">
-        <div className="col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-3">
+        <div className="lg:col-span-2">
           <DailyPatternChart/>
         </div>
          <StatusSummary/>
       </div>
       
       {/*Location Card*/}
-      <div className="grid grid-cols-2 gap-4 p-3">
-        <LocationCard name="Canselori Junction" congestion={40} vehicleCount={12}/>
-        <LocationCard name="UNIMAS Entrance" congestion={50} vehicleCount={15}/>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-3">
+        <LocationCard name="Canselori Junction" congestion={30} vehicleCount={12}/>
+        <LocationCard name="UNIMAS Entrance" congestion={85} vehicleCount={100}/>
       </div>
 
     </div>
       </div>
      
-
-    
-
   );
 }
 
