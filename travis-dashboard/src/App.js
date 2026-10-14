@@ -1,9 +1,13 @@
 import { useEffect, useState} from "react";
+
 import Header from "./components/common/Header";
 import SummaryCard from "./components/common/SummaryCard";
 import DailyPatternChart from "./components/common/DailyPatternCharts";
 import StatusSummary from "./components/common/StatusSummary";
 import LocationCard from "./components/common/LocationCard";
+
+import {locations, hourlyByLocation} from "./data/mockData";
+import {getStatus} from "./utils/congestion";
 
 function App() {
   const [isDark, setIsDark] = useState(()=> {
@@ -25,6 +29,21 @@ function App() {
     setIsDark((current) => !current);
   }
 
+  const overallHourlyByPattern = Array.from(
+    {length: 24 },
+    (_, hour) => {
+      const total = locations.reduce((sum, location) => {
+        return sum + hourlyByLocation[location.id][hour];
+      },0); 
+
+      return{
+        hour: String(hour),
+        congestion: Math.round(total / locations.length),
+      };
+    }
+  );
+
+  
   return (
     <div className={isDark ? "dark" : "" }>
       <div className="min-h-screen bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
