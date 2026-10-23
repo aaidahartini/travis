@@ -1,3 +1,4 @@
+//import getStatus from "../../utils/congestion";
 const locations = [
     {name: "Canselori Junction", congestion: 30},
     {name: "UNIMAS Entrance", congestion: 85},

@@ -1,25 +1,6 @@
-function getStatus(value){
-    if (value <= 39){
-        return "Free Flow";
-    }
-    if (value <= 74){
-        return "Moderate";
-    }
+import {getStatus} from "../../utils/congestion";
+import {getColor} from "../../utils/congestion";
 
-    return "Heavy";
-}
-
-function getColor(value){
-    if (value <=39){
-        return "#228B22";
-    }
-
-    if (value <= 74){
-        return "#FFFF00";
-    }
-
-    return "#FF0000";
-}
 
 function LocationCard({name, congestion, vehicleCount}){
     const status = getStatus(congestion);
@@ -40,7 +21,7 @@ function LocationCard({name, congestion, vehicleCount}){
             <div className="relative w-32 h-32 mx-auto">
                 <svg width="128" height="128" viewBox="0 0 100 100">
                     {/*Background Ring*/}
-                    <circle cx="50" cy="50" r={radius} fill="none" stroke="#e5e7eb" strokeWidth="10"/>
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#e5e7eb" strokeWidth="10"/>
                     {/*Progress Ring*/}
                     <circle cx="50" cy="50" r={radius} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={offset} transform="rotate(-90 50 50)"/>
                 </svg>
@@ -60,7 +41,7 @@ function LocationCard({name, congestion, vehicleCount}){
                 </span>
             </p>
             {/*Status*/}
-            <p className="text-center font-semiboldtext-sm text-slate-500 dark:text-slate-400" style={{color: color}}>
+            <p className="text-center font-semibold text-sm text-slate-500 dark:text-slate-400" style={{color: color}}>
                 {status}
             </p>
         </div>
