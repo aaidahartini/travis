@@ -1,9 +1,3 @@
-//import getStatus from "../../utils/congestion";
-const locations = [
-    {name: "Canselori Junction", congestion: 30},
-    {name: "UNIMAS Entrance", congestion: 85},
-];
-
 function getStatus(value){
     if (value <= 39){
         return "Free Flow";
@@ -16,7 +10,7 @@ function getStatus(value){
     return "Heavy";
 }
 
-function StatusSummary(){
+function StatusSummary({locations}){
     const freeCount = locations.filter(
         (location) => getStatus(location.congestion) === "Free Flow"
     ).length;
