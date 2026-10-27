@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function AdminLoginPage() {
     const [email, setEmail] = useState("");
@@ -11,18 +13,43 @@ function AdminLoginPage() {
         () => localStorage.getItem("travis-theme") === "dark"
     );
 
-    {/*Preventing page refresh*/}
-    function handleSubmit(event) {
+    async function handleSubmit(event){
         event.preventDefault();
-        
+
         setError("");
-        if (!email.trim() || password){
-            setError("Please enter email and password.");
-            return;
+        setSubmitting(true);
+
+        try{
+            const profile = await login(email, password);
+
+            if (profile.role_id === "role_admin"){
+                navigate("/admin/dashboard", {replace: true});
+            }else if (profile.role_id === "role_authority"){
+                navigate("/authorities/dashboard",{replace: true});
+                }
+            } catch (error){
+                console.error("Login error", error);
+
+                if (
+                    error.code === "auth/invalid-credential" ||
+                    error.code === "auth/wrong-password" ||
+                    error.code === "auth/user-not-found"
+                ){
+                    setError("Invalid email or password");
+                } else if (error.code === "auth/too-many-requests"){
+                    setError("Too many login attempts. Please try again later");
+                } else{
+                    setError(error.message || "Login failed. Please try again");
+                }
+            } finally {
+                setSubmitting(false);
+            }
         }
 
-        setError("Login authentication is not connected yet");
-    }
+    const navigate = useNavigate();
+    const {login} = useAuth();
+
+    const [submitting, setSubmitting] = useState(false);
 
     return(
         <div className={isDark ? "dark" : ""}>
@@ -87,8 +114,8 @@ function AdminLoginPage() {
                     )}
 
                     {/*Login Button*/}
-                    <button type="submit" className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700">
-                        Continue
+                    <button type="submit" className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60" disabled={submitting}>
+                        {submitting ? "Signing in..." : "Login"}
                     </button>
                 </form>
 
